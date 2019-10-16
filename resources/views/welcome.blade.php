@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -17,33 +16,29 @@
         <div class="top-left header">
             <img src="{{asset('img/logo.svg')}}" alt="">
         </div>
-        <div class="flex-center position-ref full-height">
+        <div>
             <div class="content">
                 <div class="imagem">
                     <img src="{{asset('img/austin-distel-wawEfYdpkag-unsplash.png')}}" alt="">
-                    <div class="texto">
+                    <div class="titulo-um">
                         <span>Fast and Simple,</span>
-                        <span>Unsecured</span>
+                    </div>
+                    <div class="titulo-dois">
+                        <span>Unsecured,</span>
+                    </div>
+                    <div class="titulo-tres">
                         <span>funding.</span>
                     </div>
-                    <div class="conteudo">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi sint voluptate architecto, quidem ab aliquam. Cupiditate sequi non officiis voluptates ad exercitationem rem beatae quod laboriosam, dicta aperiam inventore quo.
+                    <div class="subtitulo">
+                        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</span>
                     </div>
-                    <div class="button">
-                        <button class="button">Apply Now</button>
+                    <div class="div-button">
+                        <button class="apply-button">Apply Now</button>
                     </div>
-                    <div class="conteudo2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut molestiae atque inventore nisi dicta dolores veritatis, esse fugit ducimus amet non corrupti aliquam vitae quam doloribus obcaecati voluptatibus numquam eligendi?
+                    <div class="texto-botao">
+                        <span>Applying doesn’t affect your credit score, and there’s no obligation to accept funding.</span>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div>
-            <div class="texto-bold">
-                Getting <span>capital</span> for your business is complicated
-            </div>
-            <div class="texto-bold2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </div>
         </div>
     </body>

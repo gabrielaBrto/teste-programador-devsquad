@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-4">
-       <div class="text-white"> 
-         <router-link to="/produtos" class="nav-link">CRUD Produtos DevSquad</router-link>
-        <ul class="navbar-nav">
-          <li class="nav-item active">CRUD Produos DevSquad</li>
-        </ul>
-        
-      </div>
-    </nav> -->
      <nav class="navbar navbar-expand-sm bg-dark navbar-dark mb-4">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto text-white">
@@ -28,7 +19,6 @@
   </div>
 </template>
 <script>
-import { range } from "lodash";
   export default {
     data(){
         return {
@@ -38,7 +28,7 @@ import { range } from "lodash";
     },
 
     created() {
-      let url = `http://localhost:8000/api/verifica`;
+      let url = `http://localhost:8000/api/verifica`
       this.axios.post(url, {'api_token':this.api_token}).then(response => {
         if(response.data){
           this.nome = response.data.nome
@@ -48,7 +38,7 @@ import { range } from "lodash";
 
     methods: {
         logout(){
-          localStorage.clear();
+          localStorage.clear()
           this.api_token = null,
           this.nome = null,
           this.$router.push({ name: 'login' })

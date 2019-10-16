@@ -18,53 +18,58 @@ html, body {
 .imagem img{
     max-width:100%;
     height:auto;
+    filter: brightness(70%);
 }
 .imagem {
     display: inline-block;
     position: relative;
+    opacity: 1;
+    
 }
-.texto {
+.titulo-um {
     position: absolute;
-    top: 145px;
+    top: 100px;
     color: #fff;
-    align: left;
+    left:90px;
     font-weight: bold;  
-    font-size: 85px;
+    font-size: 75px;
 }
-.texto2 {
+.titulo-dois {
     position: absolute;
-    top: 145px;
-    color: #fff;
-    align: left;
-    font-weight: bold;  
-    font-size: 85px;
-}
-.text3{
-
-}
-.conteudo{
-    position: absolute;
-    top: 145px;
-    color: #fff;
-    align: left;  
-    font-size: 26px;
-}
-.conteudo2{
-    position: absolute;
-    top: 145px;
-    color: #fff;
-    align: left;  
-    font-size: 19px;
-}
-.button{
-    position: absolute;
-    top: 145px;
-    color: #fff;
-    align: left;
+    bottom: 0px;
+    left: 90px;
+    top:190px;
+    color:#fff;
     font-weight: bold;
+    font-size: 75px;   
 }
-button{
-    padding:0.6em 2em;
+.titulo-tres{
+    position: absolute;
+    bottom: 0px;
+    left: 90px;
+    top:280px;
+    color:#fff;
+    font-weight: bold;
+    font-size: 75px;
+}
+.subtitulo{
+    position: absolute;
+    bottom: 0px;
+    left: 90px;
+    top:400px;
+    color:#fff;
+    font-size: 17px;
+    width: 340px;
+    text-align: justify;
+}
+.div-button{
+    position: absolute;
+    bottom: 0px;
+    left: 90px;
+    top:500px;
+}
+.apply-button{
+    padding:0.4em 2em;
     border-radius: 50px;
     color:#fff;
     background-color:#28AD47;
@@ -72,30 +77,18 @@ button{
     border:0;
     cursor:pointer;
     margin:1em;
-    width:13em;
+    width:15em;
 }
-.label{
+.texto-botao{
+    position: absolute;
+    bottom: 0px;
+    left: 90px;
+    top:570px;
+    color:#fff;
+    font-size: 14px;
+    width: 310px;
+    text-align: justify;
+}
+.sub-label{
     background-color: #F7F7F7;
-}
-.texto-bold span{
-    color:#28AD47;
-}
-.texto-bold{
-    top: 1013px;
-    right: 394px;
-    width: 438px;
-    height: 93px;
-    text-align: right;
-    font-size:26px;
-    font-weight:bold;
-}
-.texto-bold2{
-    top:1013px;
-    right:400px;
-    width: 597px;
-    height: 112px;
-    text-align: right;
-    font-size: 15px;
-    letter-spacing: 0.39px;
-    color: #525252;
 }

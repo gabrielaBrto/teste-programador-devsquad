@@ -7,6 +7,9 @@ use App\Http\Resources\ProdutoCollection;
 use Illuminate\Support\Facades\Storage;
 use App\Produto;
 use App\Categoria;
+use Excel;
+use Session;
+use Auth;
 
 class ProdutoController extends Controller
 {
@@ -17,17 +20,13 @@ class ProdutoController extends Controller
     }
 
     public function show($id){
-       
         $data = [
             'produto' => Produto::findorFail($id),
             'url' => asset('/'),
             'categoria' => Produto::findOrFail($id)->categorias->nome
           ];
           return response()->json($data);
-
-          
     }
-
 
     public function store(Request $request)
     {
@@ -38,15 +37,15 @@ class ProdutoController extends Controller
                  'descricao' => $request->descricao,
                  'categoria_id' => $request->categoria_id,
                  'imagem' => $request->imagem->storeAs('images', date('Y-m-d H-i-s').'.jpg')
-             ]);
+                ]);
              return response()->json('success');
         }else{
-            return response()->json('Nenhuma imagem foi selecionada');
+            return response()->json('error');
         }    
     }
 
     public function update($id, Request $request){
-        $produto = Produto::find($id);
+        $produto = Produto::findOrFail($id);
         $produto->update($request->all());   
         return response()->json('sucesso');
     }
@@ -63,10 +62,15 @@ class ProdutoController extends Controller
 
     public function pesquisa($dado){
         if($dado) {
-            $produtos = Produto::where('nome', 'like', '%'.$dado.'%')->get();
-            return response()->json($produtos);
-        }else{
-            return new ProdutoCollection(Produto::all()); 
+            return new ProdutoCollection(Produto::where('nome', 'like', '%'.$dado.'%')->with('categorias')->paginate(1));
+          }else{
+            return new ProdutoCollection(Produto::orderBy('nome')->with('categorias')->paginate(10)); 
         }
     }
+
+    public function upload(Request $request){
+        $data = $request->arquivo->storeAs('arquivo', date('Y-m-d H-i-s').'.csv');
+        return response()->json('sucesso');
+    }
+
 }

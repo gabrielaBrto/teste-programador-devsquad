@@ -12,4 +12,5 @@ Route::post('/produtos/update/{id}', 'ProdutoController@update');
 Route::delete('/produtos/delete/{id}', 'ProdutoController@delete');
 Route::get('/produtos/pesquisa/{dado}', 'ProdutoController@pesquisa');
 Route::get('/produtos/visualizar/{id}','ProdutoController@show');
+Route::post('/produtos/upload', 'ProdutoController@upload');
 Route::get('/produtos', 'ProdutoController@index');

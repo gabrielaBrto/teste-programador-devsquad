@@ -20,7 +20,8 @@
                     </div>
                         
                     <div class="col-md-3 text-right">
-                       <router-link to="/create" class="btn btn-success">Novo</router-link>
+                      <router-link to="/create" class="btn btn-success">Novo</router-link>
+                      <router-link to="/upload" class="btn btn-info text-white">Upload arquivo CSV</router-link>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -38,14 +39,13 @@
                             <td>{{ produto.nome }}</td>
                             <td>{{ produto.preco }}</td>
                             <td>{{ produto.categorias.nome }}</td>
-                            <td><router-link :to="{name: 'view', params: { id: produto.id }}" class="btn btn-info">Visualizar</router-link></td>
-                            <td><router-link :to="{name: 'edit', params: { id: produto.id }}" class="btn btn-warning">Editar</router-link></td>
+                            <td><router-link :to="{name: 'view', params: { id: produto.id }}" class="btn btn-info text-white">Visualizar</router-link></td>
+                            <td><router-link :to="{name: 'edit', params: { id: produto.id }}" class="btn btn-warning text-white">Editar</router-link></td>
                             <td><button class="btn btn-danger" @click.prevent="deleteProduto(produto.id)">Deletar</button></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              <!-- https://codepen.io/blokche/pen/eWMrdN -->
               <nav aria-label="Paginas">
               <ul class="pagination ">
                 <li
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { range } from "lodash";
+import { range } from "lodash"
 export default {
   data(){
     return {
@@ -74,12 +74,12 @@ export default {
         pages: [],
         source: [],
         pesquisa: {},
-        logado: null
+        logado: null,
       }
     },
     
     beforeCreate(){
-      let url = `http://localhost:8000/api/verifica`;
+      let url = `http://localhost:8000/api/verifica`
         this.axios.post(url, {'api_token':localStorage.getItem('user-token')}).then(response => {
           if(response.data)
             return this.logado = true
@@ -89,37 +89,37 @@ export default {
     },
     
     created() {
-      let uri = `http://localhost:8000/api/produtos?page=1`;
+      let uri = `http://localhost:8000/api/produtos?page=1`
       this.axios.get(uri).then(response => {
-        this.produtos = response.data.data;
-        this.source = response.data.meta;
-        this.pages = range(1, this.source.last_page + 1);
-      });
+        this.produtos = response.data.data
+        this.source = response.data.meta
+        this.pages = range(1, this.source.last_page + 1)
+      })
     },
     
     methods: {
       navegar(page) {
-        let uri = `http://localhost:8000/api/produtos?page=${page}`;
+        let uri = `http://localhost:8000/api/produtos?page=${page}`
         this.axios.get(uri).then(response => {
-          this.produtos = response.data.data;
-        });
-        this.source.current_page = page;
+          this.produtos = response.data.data
+        })
+        this.source.current_page = page
       },
 
       deleteProduto(id){
         if(confirm('Tem certeza que deseja excluir este produto?'))
         this.axios.delete(`http://localhost:8000/api/produtos/delete/${id}`).then(response => {
-          this.produtos.splice(this.produtos.indexOf(id), 1);
-        });
+          this.produtos.splice(this.produtos.indexOf(id), 1)
+        })
       },
 
       pesquisar() {
-        let uri = `http://localhost:8000/api/produtos/pesquisa/${this.pesquisa.nome}`;
+        let uri = `http://localhost:8000/api/produtos/pesquisa/${this.pesquisa.nome}`
         this.axios.get(uri).then(response => {
-         this.produtos = response.data;
-         this.source = response.data.meta;
-        this.pages = range(1, this.source.last_page + 1);
-        });
+         this.produtos = response.data.data
+         this.source = response.data.meta
+        this.pages = range(1, this.source.last_page + 1)
+        })
       },
     }
 

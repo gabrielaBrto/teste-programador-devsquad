@@ -15,17 +15,18 @@ import { ValidationProvider, extend } from 'vee-validate';
 Vue.component('ValidationProvider', ValidationProvider);
 
 
-import HomeComponent from './components/HomeComponent.vue';
+import LoginComponent from './components/LoginComponent.vue';
 import CreateComponent from './components/CreateComponent.vue';
 import IndexComponent from './components/IndexComponent.vue';
 import EditComponent from './components/EditComponent.vue';
 import ProductComponent from './components/ProductComponent.vue';
+import UploadComponent from './components/UploadComponent.vue';
 
 const routes = [
   {
       name: 'login',
       path: '/',
-      component: HomeComponent
+      component: LoginComponent
   },
   {
       name: 'create',
@@ -46,6 +47,11 @@ const routes = [
     name: 'view',
     path: '/view/:id',
     component: ProductComponent
+  },
+  {
+    name: 'upload',
+    path: '/upload',
+    component: UploadComponent
   }
 ];
 

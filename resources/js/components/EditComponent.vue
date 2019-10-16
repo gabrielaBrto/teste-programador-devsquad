@@ -11,13 +11,9 @@
                                 <div id="preview">
                                     <img  :src="urlImage" class="w-100" id="preview">
                                 </div> 
-                                 <span class="btn btn-primary btn-block" id="select-image">
-                                        Selecione uma imagem
-                                </span>
-                                        <input type="file" id="file" ref="imagem" class="custom-file-input" @change="handleFileUpload" accept="image/jpeg, image/png"/>
-                                <!-- <input type="file" ref="imagem"  @change="handleFileUpload" /> -->
+                                 <span class="btn btn-primary btn-block" id="select-image">Selecione uma imagem</span>
+                                 <input type="file" id="file" ref="imagem" class="custom-file-input" @change="handleFileUpload" accept="image/jpeg, image/png"/>
                             </div>
-
                             <div class="col-md-9">
                                 <div class="form-row">
                                     <div class="form-group col-md-9">
@@ -29,8 +25,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Preço</label>
-                                        <input type="number" step=0.01 min="0" class="form-control" v-model="produto.preco" />
-                                       
+                                        <input type="number" step=0.01 min="0" class="form-control" v-model="produto.preco" />     
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -67,16 +62,16 @@
 </template>
 <script>
 
-import { extend } from "vee-validate";
-import { required , max } from "vee-validate/dist/rules";
-extend("required", required);
-extend("max", max);
+import { extend } from "vee-validate"
+import { required , max } from "vee-validate/dist/rules"
+extend("required", required)
+extend("max", max)
 extend("required", {
   message: "Este campo deve ser preenchido"
-});
+})
 extend("max", {
   message: "O campo deve ter menos de 64 caracteres!" 
-});
+})
 
 export default{
     data() {
@@ -84,14 +79,14 @@ export default{
             produto: {},
             categorias: [],
             selectedFile: null,
-            urlImage: "http://loja.muchiutt.com.br/images/sem-imagem-veiculo.png",
+            urlImage: "https://i0.wp.com/www.aklimper.com.br/wp-content/uploads/2018/11/sem_foto-500x538.jpg",
             logado: null,
             api_token: localStorage.getItem('user-token')
         }
     },
     
     beforeCreate(){
-        let url = `http://localhost:8000/api/verifica`;
+        let url = `http://localhost:8000/api/verifica`
         this.axios.post(url, {'api_token':localStorage.getItem('user-token')}).then(response => {
         if(response.data)
             return this.logado = true
@@ -101,43 +96,41 @@ export default{
     },
   
     created() {
-        let uri = `http://localhost:8000/api/produtos/categorias`;
+        let uri = `http://localhost:8000/api/produtos/categorias`
         this.axios.get(uri).then(response => {
-            this.categorias = response.data;
-        });
+            this.categorias = response.data
+        })
     },
 
     methods: {
         handleFileUpload(e){
-        this.selectedFile = event.target.files[0];
-        this.urlImage = URL.createObjectURL(this.selectedFile);
-    },
+            this.selectedFile = event.target.files[0]
+            this.urlImage = URL.createObjectURL(this.selectedFile)
+        },
 
-    updateProduto(){
-        let uri = `http://localhost:8000/api/produtos/update/${this.$route.params.id}`;
-        let data = new FormData();
-        if(this.selectedFile){
-            data.append("imagem", this.selectedFile, this.selectedFile.name);    
-            data.append("nome", this.produto.nome);
-            data.append("descricao", this.produto.descricao);
-            data.append("categoria_id", this.produto.categoria_id);
-            data.append("preco", this.produto.preco);
-            this.axios.post(uri, data, { headers: { "Content-Type": "multipart/form-data" } }).then((response) => {
-                this.$router.push({ name: 'produtos' })
-            });
-        }else{
-            data.append("imagem", this.urlImage );    
-            data.append("nome", this.produto.nome);
-            data.append("descricao", this.produto.descricao);
-            data.append("categoria_id", this.produto.categoria_id);
-            data.append("preco", this.produto.preco);
-            this.axios.post(uri, data, { headers: { "Content-Type": "multipart/form-data" } }).then((response) => {
-                this.$router.push({ name: 'produtos' })
-            });
-        }
-        
-    },
- 
+        updateProduto(){
+            let uri = `http://localhost:8000/api/produtos/update/${this.$route.params.id}`
+            let data = new FormData()
+            if(this.selectedFile){
+                data.append("imagem", this.selectedFile, this.selectedFile.name)    
+                data.append("nome", this.produto.nome)
+                data.append("descricao", this.produto.descricao)
+                data.append("categoria_id", this.produto.categoria_id)
+                data.append("preco", this.produto.preco)
+                this.axios.post(uri, data, { headers: { "Content-Type": "multipart/form-data" } }).then((response) => {
+                    this.$router.push({ name: 'produtos' })
+                })
+            }else{
+                data.append("imagem", this.urlImage )    
+                data.append("nome", this.produto.nome)
+                data.append("descricao", this.produto.descricao)
+                data.append("categoria_id", this.produto.categoria_id)
+                data.append("preco", this.produto.preco)
+                this.axios.post(uri, data, { headers: { "Content-Type": "multipart/form-data" } }).then((response) => {
+                    this.$router.push({ name: 'produtos' })
+                })
+            }        
+        },
     }
 }
 </script>

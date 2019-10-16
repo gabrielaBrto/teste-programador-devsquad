@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Produto extends Model
 {
@@ -13,4 +14,5 @@ class Produto extends Model
     public function categorias(){
         return $this->belongsTo('App\Categoria', 'categoria_id');
     }
+
 }

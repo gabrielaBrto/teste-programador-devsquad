@@ -7,7 +7,7 @@
             <div class="card-body">
             	<div class="row">
             		<div class="col-md-6">
-			             <img :src="url" width="50%"/>
+			             <img :src="url"/>
             		</div>
             		<div class="col-md-6">
             			<p><b>Nome:</b>  {{produto.nome}}</p>
@@ -31,11 +31,11 @@ export default {
       url : null,
       categoria: null,
       logado: null
-    };
+    }
   },
   
   beforeCreate(){
-    let url = `http://localhost:8000/api/verifica`;
+    let url = `http://localhost:8000/api/verifica`
     this.axios.post(url, {'api_token':localStorage.getItem('user-token')}).then(response => {
     if(response.data)
         return this.logado = true
@@ -45,13 +45,13 @@ export default {
   },  
   
   created() {
-    let uri = `http://localhost:8000/api/produtos/visualizar/${this.$route.params.id}`;
+    let uri = `http://localhost:8000/api/produtos/visualizar/${this.$route.params.id}`
     this.axios.get(uri).then(response => {
       this.produto = response.data.produto
       this.categoria = response.data.categoria
-      this.url =  response.data.url + this.produto.imagem.replace("public","storage");
-    });
+      this.url = response.data.url+this.produto.imagem.replace("public","storage")
+    })
   }
 
-};
+}
 </script>
