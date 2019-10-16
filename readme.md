@@ -5,7 +5,7 @@ npm install
 
 ## Configurar arquivo env
 
-criar banco chamado vuecrud  
+Criar banco chamado vuecrud  
 Adicionar dados de e-mail  
 Adicionar configuração de e-mail em app/config/mail.php   
 
