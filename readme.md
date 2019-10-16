@@ -15,3 +15,6 @@ php artisan key:generate
 php artisan migrate --seed  
 php artisan serve  
 npm run watch  
+
+## Comando para executar Upload de produtos
+php artisan upload:produto
