@@ -17,7 +17,7 @@
 
 
 Route::get('/page', function(){
-  return view('welcome');
+  return view('landingpage');
 });
 
 Route::get('/{any}', function () { return view('post'); })->where('any', '.*');
